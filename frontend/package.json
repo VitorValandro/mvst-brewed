@@ -9,7 +9,9 @@
     "lint:fix": "next lint --fix",
     "test": "jest --watchAll=false",
     "prettier:fix": "prettier --write '**/*.{ts,tsx}' ",
-    "commit-linter": "commit -am --allow-empty 'fixing all linter issues'"
+    "commit-linter": "commit -am --allow-empty 'fixing all linter issues'",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "pre-push": [
     "lint"
@@ -35,11 +37,16 @@
     "@storybook/addon-actions": "^7.0.18",
     "@storybook/addon-docs": "^7.0.18",
     "@storybook/addon-essentials": "^7.0.18",
+    "@storybook/addon-interactions": "^7.0.18",
+    "@storybook/addon-styling": "^1.0.8",
     "@storybook/addon-links": "^7.0.18",
     "@storybook/addon-postcss": "^2.0.0",
+    "@storybook/blocks": "^7.0.18",
     "@storybook/builder-webpack5": "^7.0.18",
     "@storybook/manager-webpack5": "^6.5.16",
+    "@storybook/nextjs": "^7.0.18",
     "@storybook/react": "^7.0.18",
+    "@storybook/testing-library": "^0.0.14-next.2",
     "@types/node": "^14.6.0",
     "@types/react": "^17.0.3",
     "@types/react-dom": "^17.0.3",
@@ -52,14 +59,21 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-jest": "^24.4.0",
     "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-storybook": "^0.6.12",
     "husky": "^7.0.0",
     "postcss": "^8.3.6",
     "prettier": "^2.4.1",
+    "storybook": "^7.0.18",
     "typescript": "^4.4.4"
   },
   "overrides": {
     "chokidar": "3.5.3",
     "glob-parent": "6.0.2"
   },
-  "license": "UNLICENSED"
+  "license": "UNLICENSED",
+  "eslintConfig": {
+    "extends": [
+      "plugin:storybook/recommended"
+    ]
+  }
 }
