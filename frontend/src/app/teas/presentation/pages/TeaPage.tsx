@@ -1,6 +1,6 @@
 import React from "react";
 import {Tea} from "../../domain/tea";
-import {TeaCard} from "../components/TeaCard";
+import {TeaCard} from "../components/TeaCard/TeaCard";
 import Navbar from "src/components/Navbar/Navbar";
 import menu from "src/core/navigation/menu";
 import Head from "next/head";

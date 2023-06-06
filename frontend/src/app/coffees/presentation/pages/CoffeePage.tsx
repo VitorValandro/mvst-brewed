@@ -1,6 +1,6 @@
 import React from "react";
 import {Coffee} from "../../domain/coffee";
-import {CoffeeCard} from "../components/CoffeeCard";
+import {CoffeeCard} from "../components/CoffeeCard/CoffeeCard";
 import Navbar from "src/components/Navbar/Navbar";
 import menu from "src/core/navigation/menu";
 import Head from "next/head";

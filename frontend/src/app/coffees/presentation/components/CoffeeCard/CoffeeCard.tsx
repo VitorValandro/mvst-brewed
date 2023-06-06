@@ -1,5 +1,5 @@
 import React from "react";
-import ImageWithFallback from "../../../../components/ImageWithFallback/ImageWithFallback";
+import ImageWithFallback from "@/components/ImageWithFallback/ImageWithFallback";
 
 export const CoffeeCard: React.FC<{
   title: string;
@@ -12,6 +12,7 @@ export const CoffeeCard: React.FC<{
     <div className="p-4 flex flex-col items-center bg-white border rounded-lg max-w-xs h-350 min-h-full">
       <div className="relative w-232 h-248">
         <ImageWithFallback
+          role="image"
           fallbackImage={`/fallback-image.png`}
           src={`/${imageUrl}`}
           alt="Product Image"

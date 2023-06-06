@@ -1,4 +1,4 @@
-import { CoffeeCard } from "./CoffeeCard";
+import {CoffeeCard} from "./CoffeeCard";
 
 const meta = {
   component: CoffeeCard,
