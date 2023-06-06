@@ -1,6 +1,6 @@
 import Navbar from "./Navbar";
 
-export default {
+const meta = {
   component: Navbar,
   title: "Navbar",
   tags: ["autodocs"],
@@ -27,3 +27,5 @@ export const DEFAULT = {
     ],
   },
 };
+
+export default meta;

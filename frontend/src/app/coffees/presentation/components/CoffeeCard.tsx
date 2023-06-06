@@ -5,7 +5,7 @@ export const CoffeeCard: React.FC<{
   title: string;
   tag: "ARABIC" | "ROBUSTA";
   imageUrl: string;
-}> = ({title, tag, imageUrl}) => {
+}> = ({ title, tag, imageUrl }) => {
   const TAG_COLOR = tag === "ARABIC" ? "bg-arabic" : "bg-robusta";
 
   return (

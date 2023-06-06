@@ -1,5 +1,5 @@
-import {useState} from "react";
-import Image, {ImageProps} from "next/image";
+import { ReactElement, useState } from "react";
+import Image, { ImageProps } from "next/image";
 
 interface ImageWithFallbackProps extends ImageProps {
   fallbackImage: string;
@@ -10,7 +10,7 @@ export default function ImageWithFallback({
   alt,
   src,
   ...props
-}: ImageWithFallbackProps) {
+}: ImageWithFallbackProps): ReactElement {
   const [error, setError] = useState<boolean>(false);
 
   return (

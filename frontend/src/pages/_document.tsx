@@ -14,7 +14,7 @@ class MyDocument extends Document {
     ctx: DocumentContext
   ): Promise<DocumentInitialProps> {
     const initialProps = await Document.getInitialProps(ctx);
-    return {...initialProps};
+    return { ...initialProps };
   }
 
   render(): JSX.Element {

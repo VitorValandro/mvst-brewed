@@ -1,10 +1,12 @@
-export default [
+const menu = [
   {
     route: "/coffees",
-    title: "Our Coffee"
+    title: "Our Coffee",
   },
   {
     route: "/teas",
-    title: "Our Tea"
-  }
-]
+    title: "Our Tea",
+  },
+];
+
+export default menu;

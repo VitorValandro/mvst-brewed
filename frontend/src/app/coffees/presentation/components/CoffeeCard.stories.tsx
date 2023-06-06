@@ -1,6 +1,6 @@
-import {CoffeeCard} from "./CoffeeCard";
+import { CoffeeCard } from "./CoffeeCard";
 
-export default {
+const meta = {
   component: CoffeeCard,
   title: "CoffeCard",
   tags: ["autodocs"],
@@ -29,3 +29,5 @@ export const UNDEFINED_IMAGE = {
     imageUrl: undefined,
   },
 };
+
+export default meta;

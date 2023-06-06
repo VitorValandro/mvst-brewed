@@ -1,5 +1,6 @@
 import Link from "next/link";
-import {useRouter} from "next/router";
+import { useRouter } from "next/router";
+import { ReactElement } from "react";
 
 type NavbarProps = {
   links: {
@@ -8,7 +9,7 @@ type NavbarProps = {
   }[];
 };
 
-export default function Navbar({links}: NavbarProps) {
+export default function Navbar({ links }: NavbarProps): ReactElement {
   const router = useRouter();
 
   return (
@@ -18,6 +19,8 @@ export default function Navbar({links}: NavbarProps) {
         {links.map((link) => {
           return (
             <Link
+              passHref
+              key={link.route}
               href={link.route}
               className={`w-28 h-full inline-flex items-end justify-center ${
                 router.pathname == link.route

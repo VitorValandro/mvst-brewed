@@ -4,7 +4,7 @@ import ImageWithFallback from "src/components/ImageWithFallback/ImageWithFallbac
 export const TeaCard: React.FC<{
   title: string;
   imageUrl: string;
-}> = ({title, imageUrl}) => {
+}> = ({ title, imageUrl }) => {
   return (
     <div className="p-4 flex flex-col items-center bg-white border rounded-lg max-w-xs h-350 min-h-full">
       <div className="relative w-232 h-248">

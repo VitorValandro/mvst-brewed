@@ -1,25 +1,25 @@
-import { Coffee } from './coffee';
+import { Coffee } from "./coffee";
 
-describe('Test the Coffee model', () => {
-  it('create a valid Coffee', () => {
+describe("Test the Coffee model", () => {
+  it("create a valid Coffee", () => {
     const newCoffee = new Coffee({
-      title: 'Lavazza Espresso',
-      tag: 'ROBUSTA',
-      imageUrl: 'fallback-image.png',
+      title: "Lavazza Espresso",
+      tag: "ROBUSTA",
+      imageUrl: "fallback-image.png",
     });
 
-    expect(newCoffee.title).toEqual('Lavazza Espresso');
-    expect(newCoffee.tag).toEqual('ROBUSTA');
-    expect(newCoffee.imageUrl).toEqual('fallback-image.png');
+    expect(newCoffee.title).toEqual("Lavazza Espresso");
+    expect(newCoffee.tag).toEqual("ROBUSTA");
+    expect(newCoffee.imageUrl).toEqual("fallback-image.png");
   });
 
-  it('should have the ARABIC tag as default', () => {
+  it("should have the ARABIC tag as default", () => {
     const defaultTagCoffee = new Coffee({
-      title: 'Nespresso',
+      title: "Nespresso",
       tag: undefined,
-      imageUrl: 'fallback-image.png'
+      imageUrl: "fallback-image.png",
     });
 
-    expect(defaultTagCoffee.tag).toEqual('ARABIC');
+    expect(defaultTagCoffee.tag).toEqual("ARABIC");
   });
 });

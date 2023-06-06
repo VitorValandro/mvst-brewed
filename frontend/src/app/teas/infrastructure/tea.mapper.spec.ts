@@ -1,24 +1,24 @@
-import { Tea } from '../domain/tea';
-import { TeaMapper } from './tea.mapper';
+import { Tea } from "../domain/tea";
+import { TeaMapper } from "./tea.mapper";
 
-describe('Test the TeaMapper data mapping', () => {
-  it('should map valid objects into Tea instances', () => {
+describe("Test the TeaMapper data mapping", () => {
+  it("should map valid objects into Tea instances", () => {
     const fetchAllMock = [
       {
-        title: 'Tea Title',
-        imageUrl: 'tea-sample.png',
+        title: "Tea Title",
+        imageUrl: "tea-sample.png",
       } as const,
       {
-        title: 'Tea Title',
-        imageUrl: 'tea-sample.png',
+        title: "Tea Title",
+        imageUrl: "tea-sample.png",
       } as const,
     ];
 
     const domainData = fetchAllMock.map(TeaMapper.toDomain);
-    domainData.forEach(data => {
+    domainData.forEach((data) => {
       expect(data).toBeInstanceOf(Tea);
-      expect(data.title).toEqual('Tea Title');
-      expect(data.imageUrl).toEqual('tea-sample.png');
-    })
+      expect(data.title).toEqual("Tea Title");
+      expect(data.imageUrl).toEqual("tea-sample.png");
+    });
   });
-})
+});
