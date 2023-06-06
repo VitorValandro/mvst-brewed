@@ -19,7 +19,7 @@ export const CoffeePage: React.FC<Props> = ({data}) => {
       <Navbar links={menu} />
       <div className="mx-1 px-6 md:mx-4 md:px-18 lg:mx-10 lg:px-24">
         <div className="my-10">
-          <h1 className="text-3xl text-title font-semibold w-2/3">
+          <h1 className="text-3xl text-title font-semibold w-4/5">
             Our beloved coffee
           </h1>
           <p className="text-lg text-paragraph mt-2">
@@ -27,7 +27,7 @@ export const CoffeePage: React.FC<Props> = ({data}) => {
             promise you, this will be the best coffe of your life.
           </p>
         </div>
-        <div className="grid grid-cols-1 place-items-center sm:grid-cols-2 md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 place-items-center sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
           {data.map((coffee, index) => (
             <CoffeeCard
               key={index}

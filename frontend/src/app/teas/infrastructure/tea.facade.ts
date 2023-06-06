@@ -11,6 +11,30 @@ export class TeaFacade {
         title: "GEPA Chiapas",
         imageUrl: "tea-sample.png",
       },
+      {
+        title: "GEPA Chiapas",
+        imageUrl: "tea-sample.png",
+      },
+      {
+        title: "GEPA Chiapas",
+        imageUrl: "tea-sample.png",
+      },
+      {
+        title: "GEPA Chiapas",
+        imageUrl: "tea-sample.png",
+      },
+      {
+        title: "GEPA Chiapas",
+        imageUrl: "tea-sample.png",
+      },
+      {
+        title: "GEPA Chiapas",
+        imageUrl: "tea-sample.png",
+      },
+      {
+        title: "GEPA Chiapas",
+        imageUrl: "tea-sample.png",
+      },
     ];
   }
 }
