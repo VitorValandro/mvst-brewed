@@ -6,7 +6,7 @@ export type CoffeeProps = {
 
 export class Coffee {
   title: string;
-  tag?: "ARABIC" | "ROBUSTA";
+  tag: "ARABIC" | "ROBUSTA";
   imageUrl: string;
 
   constructor(data: CoffeeProps) {
