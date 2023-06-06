@@ -5,7 +5,7 @@ export const CoffeeCard: React.FC<{
   title: string;
   tag: "ARABIC" | "ROBUSTA";
   imageUrl: string;
-}> = ({ title, tag, imageUrl }) => {
+}> = ({title, tag, imageUrl}) => {
   const TAG_COLOR = tag === "ARABIC" ? "bg-arabic" : "bg-robusta";
 
   return (
@@ -21,7 +21,7 @@ export const CoffeeCard: React.FC<{
 
       <hr className="my-4 h-px w-full border-t-0 bg-details" />
       <div className="inline-flex justify-around">
-        <h1 className="w-4/6 text-lg text-primary font-semibold leading-none">
+        <h1 className="w-4/6 text-lg text-title font-semibold leading-none">
           {title}
         </h1>
         <div

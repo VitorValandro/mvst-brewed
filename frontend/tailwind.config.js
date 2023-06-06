@@ -46,10 +46,10 @@ module.exports = {
         10: "10px",
       },
       textColor: {
-        black: "black",
-        primary: "#32332E",
         light: "#FBFAF8",
-        secondary: "black",
+        title: "#32332E",
+        paragraph: "#615F5B",
+        footer: "#8A8370",
         grey: "#44403C",
       },
     },
