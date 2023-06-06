@@ -1,5 +1,5 @@
 import React from "react";
-import ImageWithFallback from "src/components/ImageWithFallback/ImageWithFallback";
+import ImageWithFallback from "../../../../components/ImageWithFallback/ImageWithFallback";
 
 export const CoffeeCard: React.FC<{
   title: string;
@@ -21,10 +21,14 @@ export const CoffeeCard: React.FC<{
 
       <hr className="my-4 h-px w-full border-t-0 bg-details" />
       <div className="inline-flex justify-around">
-        <h1 className="w-4/6 text-lg text-title font-semibold leading-none">
+        <h1
+          role="title"
+          className="w-4/6 text-lg text-title font-semibold leading-none"
+        >
           {title}
         </h1>
         <div
+          role="tag"
           className={`flex items-center justify-center w-auto h-6 py-1 px-2 text-xs font-semibold text-light ${TAG_COLOR} rounded-sm`}
         >
           <span>{tag}</span>
