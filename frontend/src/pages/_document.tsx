@@ -7,14 +7,14 @@ import Document, {
   NextScript,
   DocumentInitialProps,
   DocumentContext,
-} from 'next/document';
+} from "next/document";
 
 class MyDocument extends Document {
   static async getInitialProps(
-    ctx: DocumentContext,
+    ctx: DocumentContext
   ): Promise<DocumentInitialProps> {
     const initialProps = await Document.getInitialProps(ctx);
-    return { ...initialProps };
+    return {...initialProps};
   }
 
   render(): JSX.Element {

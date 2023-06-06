@@ -1,15 +1,35 @@
-import React from 'react';
+import React from "react";
+import ImageWithFallback from "src/components/ImageWithFallback";
 
 export const CoffeeCard: React.FC<{
   title: string;
-  description: string;
-  date: string;
-}> = ({ title, description, date }) => {
+  tag: "ARABIC" | "ROBUSTA";
+  imageUrl: string;
+}> = ({title, tag, imageUrl}) => {
+  const TAG_COLOR = tag === "ARABIC" ? "bg-arabic" : "bg-robusta";
+
   return (
-    <div className="border border-black">
-      <h1 className="text-5xl text-primary">{title}</h1>
-      <p className="mt-2 text-sm text-grey">{description}</p>
-      <p className="mt-2 text-sm text-grey">{date}</p>
+    <div className="p-4 flex flex-col items-center bg-white border rounded-lg max-w-xs h-350 min-h-full">
+      <div className="relative w-232 h-248">
+        <ImageWithFallback
+          fallbackImage={`/fallback-image.png`}
+          src={`/${imageUrl}`}
+          alt="Product Image"
+          fill
+        />
+      </div>
+
+      <hr className="my-4 h-px w-full border-t-0 bg-details" />
+      <div className="inline-flex justify-around">
+        <h1 className="w-4/6 text-lg text-primary font-semibold leading-none">
+          {title}
+        </h1>
+        <div
+          className={`flex items-center justify-center w-auto h-6 py-1 px-2 text-xs font-semibold text-light ${TAG_COLOR} rounded-sm`}
+        >
+          <span>{tag}</span>
+        </div>
+      </div>
     </div>
   );
 };

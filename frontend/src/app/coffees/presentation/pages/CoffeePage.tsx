@@ -13,8 +13,8 @@ export const CoffeePage: React.FC<Props> = ({data}) => {
       {data.map((coffee) => (
         <CoffeeCard
           title={coffee.title}
-          description={coffee.description}
-          date={coffee.getDate()}
+          tag={coffee.tag}
+          imageUrl={coffee.imageUrl}
         />
       ))}
     </div>

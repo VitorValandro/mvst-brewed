@@ -1,15 +1,17 @@
+export type CoffeeProps = {
+  title: string;
+  tag?: "ARABIC" | "ROBUSTA";
+  imageUrl: string;
+}
+
 export class Coffee {
   title: string;
-  description: string;
-  private addedAt: Date;
+  tag?: "ARABIC" | "ROBUSTA";
+  imageUrl: string;
 
-  constructor(data: any) {
+  constructor(data: CoffeeProps) {
     this.title = data.title;
-    this.description = data.description;
-    this.addedAt = data.addedAt;
-  }
-
-  getDate() {
-    return this.addedAt;
+    this.tag = data.tag || 'ARABIC';
+    this.imageUrl = data.imageUrl;
   }
 }

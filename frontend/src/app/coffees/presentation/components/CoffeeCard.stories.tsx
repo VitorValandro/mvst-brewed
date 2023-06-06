@@ -6,10 +6,26 @@ export default {
   tags: ["autodocs"],
 };
 
-export const Default = {
+export const ARABIC = {
   args: {
-    title: "Test Coffee Card",
-    description: "This is a test Coffee Card",
-    date: "2023-06-05T21:32:41.950Z",
+    title: "Test Arabic Coffee Card",
+    tag: "ARABIC",
+    imageUrl: "coffee-sample.png",
+  },
+};
+
+export const ROBUSTA = {
+  args: {
+    title: "Test Robusta Coffee Card",
+    tag: "ROBUSTA",
+    imageUrl: "coffee-sample.png",
+  },
+};
+
+export const UNDEFINED_IMAGE = {
+  args: {
+    title: "Test Coffee Card without Image",
+    tag: "ROBUSTA",
+    imageUrl: undefined,
   },
 };

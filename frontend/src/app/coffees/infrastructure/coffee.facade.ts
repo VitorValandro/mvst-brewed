@@ -2,9 +2,14 @@ export class CoffeeFacade {
   async fetchAll() {
     return [
       {
-        title: 'Amazing Coffee',
-        description: 'Distributed from the nice countryside of São Paulo',
-        date: new Date().toISOString(),
+        title: 'GEPA Chiapas with two lines',
+        tag: 'ARABIC',
+        imageUrl: 'coffee-sample.png',
+      },
+      {
+        title: 'GEPA Chiapas with two lines',
+        tag: 'ROBUSTA',
+        imageUrl: 'coffee-sample.png',
       },
     ];
   }

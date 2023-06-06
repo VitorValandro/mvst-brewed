@@ -1,10 +1,10 @@
-import { Coffee } from '../domain/coffee';
+import { Coffee, CoffeeProps } from '../domain/coffee';
 
 export const CoffeeMapper = {
-  toDomain: (data: any) =>
+  toDomain: (data: CoffeeProps) =>
     new Coffee({
       title: data.title,
-      description: data.description || '',
-      addedAt: data.date || '',
+      tag: data.tag,
+      imageUrl: data.imageUrl,
     }),
 };
