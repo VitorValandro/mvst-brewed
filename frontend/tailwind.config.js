@@ -13,6 +13,7 @@ module.exports = {
   theme: {
     fontFamily: {
       sans: ['"Montserrat"', "sans-serif"],
+      logo: "Limelight",
     },
     extend: {
       height: {
@@ -28,7 +29,8 @@ module.exports = {
         350: "350px",
       },
       colors: {
-        primary: "black",
+        primary: "#8E9882",
+        secondary: "#C69F66",
         white: "#fff",
         details: "#F1E7CD",
         arabic: "#CD4C15",
@@ -39,6 +41,9 @@ module.exports = {
       },
       borderColor: {
         DEFAULT: "#E7E3D9",
+      },
+      borderWidth: {
+        10: "10px",
       },
       textColor: {
         black: "black",

@@ -1,5 +1,5 @@
 import React from "react";
-import ImageWithFallback from "src/components/ImageWithFallback";
+import ImageWithFallback from "src/components/ImageWithFallback/ImageWithFallback";
 
 export const CoffeeCard: React.FC<{
   title: string;
