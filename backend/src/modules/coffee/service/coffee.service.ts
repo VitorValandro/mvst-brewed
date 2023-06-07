@@ -11,7 +11,24 @@ export class CoffeeService {
     private readonly coffeeRepository: Repository<Coffee>,
   ) {}
 
-  async list(query: FindAllCoffeeDto): Promise<Coffee[]> {
-    return this.coffeeRepository.find();
+  async list(params: FindAllCoffeeDto): Promise<Coffee[]> {
+    const query = this.coffeeRepository.createQueryBuilder('coffee');
+
+    if (params.titleFilter) {
+      query.andWhere('coffee.title like :titleFilter', {
+        titleFilter: `%${params.titleFilter}%`,
+      });
+    }
+
+    if (params.titleFilter) {
+      query.andWhere('coffee.tag = :tagFilter', {
+        tagFilter: params.tagFilter,
+      });
+    }
+
+    query.skip(params.pageNumber || 0);
+    query.take(params.pageSize || 10);
+
+    return query.getMany();
   }
 }
