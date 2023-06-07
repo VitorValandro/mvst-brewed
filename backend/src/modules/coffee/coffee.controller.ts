@@ -1,16 +1,12 @@
 import { Controller, Get } from '@nestjs/common';
-import { getConnection } from 'typeorm';
+import { CoffeeService } from './coffee.service';
 
-@Controller('code-challenge')
-export class CodeChallengeController {
-  constructor() {}
+@Controller('coffee')
+export class CoffeeController {
+  constructor(private readonly coffeeService: CoffeeService) {}
 
   @Get()
-  async fetchAll() {
-    return await getConnection()
-      .createQueryBuilder()
-      .select('*')
-      .from('Coffee', 'coffee')
-      .getRawMany();
+  async getAll() {
+    return this.coffeeService.list();
   }
 }

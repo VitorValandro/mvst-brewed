@@ -1,11 +1,12 @@
 import { Module } from '@nestjs/common';
-import { CodeChallengeController } from './coffee.controller';
+import { CoffeeController } from './coffee.controller';
 import { Coffee } from './coffee.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { CoffeeService } from './coffee.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Coffee])],
-  controllers: [CodeChallengeController],
-  providers: [],
+  providers: [CoffeeService],
+  controllers: [CoffeeController],
 })
-export class CodeChallengeModule {}
+export class CoffeeModule {}
