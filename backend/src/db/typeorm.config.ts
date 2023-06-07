@@ -1,6 +1,7 @@
 import { DataSource } from 'typeorm';
 import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
 import { config } from 'dotenv';
+import { Coffee } from '../modules/coffee/coffee.entity';
 
 config();
 
@@ -11,8 +12,8 @@ export const typeormDatabaseConfiguration = (): PostgresConnectionOptions => {
     port: parseInt(process.env.DATABASE_PORT),
     username: process.env.DATABASE_USER,
     password: process.env.DATABASE_PASSWORD,
-    database: process.env.DATABASE_DATABASE,
-    entities: [__dirname + '/**/*.entity{.ts,.js}'],
+    database: process.env.DATABASE_NAME,
+    entities: [Coffee],
     migrationsTableName: 'migrations',
     migrations: [__dirname + '/src/db/migrations/*{.ts,.js}'],
     synchronize: true,
