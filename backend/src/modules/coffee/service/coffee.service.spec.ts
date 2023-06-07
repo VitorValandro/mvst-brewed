@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { Coffee, CoffeeTag } from './coffee.entity';
+import { Coffee, CoffeeTag } from '../entities/coffee.entity';
 import { CoffeeService } from './coffee.service';
 
 const coffees: Coffee[] = [
@@ -65,7 +65,7 @@ describe('Testing CoffeeService', () => {
       Promise.resolve(coffees),
     );
 
-    const coffeeList = await service.list();
+    const coffeeList = await service.list({});
     expect(coffeeList).toEqual(coffees);
     expect(mockCoffeeRepository.find).toHaveBeenCalledTimes(1);
   });

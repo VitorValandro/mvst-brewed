@@ -1,7 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Coffee } from './coffee.entity';
+import { Coffee } from '../entities/coffee.entity';
+import { FindAllCoffeeDto } from '../dto/FindAllQueryParams.dto';
 
 @Injectable()
 export class CoffeeService {
@@ -10,7 +11,7 @@ export class CoffeeService {
     private readonly coffeeRepository: Repository<Coffee>,
   ) {}
 
-  async list(): Promise<Coffee[]> {
+  async list(query: FindAllCoffeeDto): Promise<Coffee[]> {
     return this.coffeeRepository.find();
   }
 }
