@@ -1,7 +1,7 @@
 import { DataSource } from 'typeorm';
 import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
 import { config } from 'dotenv';
-import { Coffee } from '../modules/coffee/entities/coffee.entity';
+import { Coffee } from './src/modules/coffee/entities/coffee.entity';
 
 config();
 
@@ -13,8 +13,10 @@ export const typeormDatabaseConfiguration = (): PostgresConnectionOptions => {
     username: process.env.DATABASE_USER,
     password: process.env.DATABASE_PASSWORD,
     database: process.env.DATABASE_NAME,
-    entities: [Coffee],
+    //entities: [Coffee],
     migrationsTableName: 'migrations',
+    //migrations: [__dirname + '/src/db/migrations/*{.ts,.js}'],
+    entities: [__dirname + '/**/*.entity{.ts,.js}'],
     migrations: [__dirname + '/src/db/migrations/*{.ts,.js}'],
     synchronize: true,
   };

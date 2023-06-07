@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Coffee } from '../entities/coffee.entity';
-import { FindAllCoffeeDto } from '../dto/FindAllQueryParams.dto';
+import { FindAllCoffeeQueryParamsDto } from '../dto/FindAllCofffeeQueryParams.dto';
 
 @Injectable()
 export class CoffeeService {
@@ -11,7 +11,7 @@ export class CoffeeService {
     private readonly coffeeRepository: Repository<Coffee>,
   ) {}
 
-  async list(params: FindAllCoffeeDto): Promise<Coffee[]> {
+  async list(params: FindAllCoffeeQueryParamsDto): Promise<Coffee[]> {
     const query = this.coffeeRepository.createQueryBuilder('coffee');
 
     if (params.titleFilter) {
@@ -26,8 +26,8 @@ export class CoffeeService {
       });
     }
 
-    query.skip(params.pageNumber || 0);
-    query.take(params.pageSize || 10);
+    query.skip(Number(params.pageNumber) * params.pageSize);
+    query.take(params.pageSize);
 
     return query.getMany();
   }

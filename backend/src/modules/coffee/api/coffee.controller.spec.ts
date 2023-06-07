@@ -4,7 +4,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { Coffee } from '../entities/coffee.entity';
 import { CoffeeController } from './coffee.controller';
 import { CoffeeService } from '../service/coffee.service';
-import { FindAllCoffeeDto } from '../dto/FindAllQueryParams.dto';
+import { FindAllCoffeeQueryParamsDto } from '../dto/FindAllCofffeeQueryParams.dto';
 
 const coffees: Coffee[] = [];
 
@@ -42,7 +42,9 @@ describe('Testing CoffeeController getAll method', () => {
   });
 
   it('should properly validate the titleFilter query param min length', async () => {
-    const dto = plainToInstance(FindAllCoffeeDto, { titleFilter: 'a' });
+    const dto = plainToInstance(FindAllCoffeeQueryParamsDto, {
+      titleFilter: 'a',
+    });
     const errors = await validate(dto);
     expect(errors.length).not.toBe(0);
     expect(JSON.stringify(errors)).toContain(
@@ -51,7 +53,9 @@ describe('Testing CoffeeController getAll method', () => {
   });
 
   it('should properly validate the titleFilter query param as string', async () => {
-    const dto = plainToInstance(FindAllCoffeeDto, { titleFilter: 1 });
+    const dto = plainToInstance(FindAllCoffeeQueryParamsDto, {
+      titleFilter: 1,
+    });
     const errors = await validate(dto);
     expect(errors.length).not.toBe(0);
     expect(JSON.stringify(errors)).toContain(
@@ -60,7 +64,7 @@ describe('Testing CoffeeController getAll method', () => {
   });
 
   it('should properly validate a valid titleFilter query param ', async () => {
-    const dto = plainToInstance(FindAllCoffeeDto, {
+    const dto = plainToInstance(FindAllCoffeeQueryParamsDto, {
       titleFilter: 'Valid filter',
     });
     const errors = await validate(dto);
@@ -68,7 +72,9 @@ describe('Testing CoffeeController getAll method', () => {
   });
 
   it('should properly validate the tagFilter query param as a CoffeeTag', async () => {
-    const dto = plainToInstance(FindAllCoffeeDto, { tagFilter: 'invalid' });
+    const dto = plainToInstance(FindAllCoffeeQueryParamsDto, {
+      tagFilter: 'invalid',
+    });
     const errors = await validate(dto);
     expect(errors.length).not.toBe(0);
     expect(JSON.stringify(errors)).toContain(
@@ -77,19 +83,25 @@ describe('Testing CoffeeController getAll method', () => {
   });
 
   it('should properly validate a valid tagFilter ROBUSTA query param', async () => {
-    const dto = plainToInstance(FindAllCoffeeDto, { tagFilter: 'ROBUSTA' });
+    const dto = plainToInstance(FindAllCoffeeQueryParamsDto, {
+      tagFilter: 'ROBUSTA',
+    });
     const errors = await validate(dto);
     expect(errors.length).toBe(0);
   });
 
   it('should properly validate a valid tagFilter ARABIC query param', async () => {
-    const dto = plainToInstance(FindAllCoffeeDto, { tagFilter: 'ARABIC' });
+    const dto = plainToInstance(FindAllCoffeeQueryParamsDto, {
+      tagFilter: 'ARABIC',
+    });
     const errors = await validate(dto);
     expect(errors.length).toBe(0);
   });
 
-  it('should properly validate the pageNumber query param', async () => {
-    const dto = plainToInstance(FindAllCoffeeDto, { pageNumber: 'invalid' });
+  it('should properly validate the pageNumber query param as an integer', async () => {
+    const dto = plainToInstance(FindAllCoffeeQueryParamsDto, {
+      pageNumber: 'invalid',
+    });
     const errors = await validate(dto);
     expect(errors.length).not.toBe(0);
     expect(JSON.stringify(errors)).toContain(
@@ -97,14 +109,29 @@ describe('Testing CoffeeController getAll method', () => {
     );
   });
 
+  it('should properly validate the pageNumber query param as an positive integer', async () => {
+    const dto = plainToInstance(FindAllCoffeeQueryParamsDto, {
+      pageNumber: '-1',
+    });
+    const errors = await validate(dto);
+    expect(errors.length).not.toBe(0);
+    expect(JSON.stringify(errors)).toContain(
+      `he page number must be 0 or a positive integer`,
+    );
+  });
+
   it('should properly validate a valid pageNumber query param', async () => {
-    const dto = plainToInstance(FindAllCoffeeDto, { pageNumber: '0' });
+    const dto = plainToInstance(FindAllCoffeeQueryParamsDto, {
+      pageNumber: '0',
+    });
     const errors = await validate(dto);
     expect(errors.length).toBe(0);
   });
 
-  it('should properly validate the pageSize query param', async () => {
-    const dto = plainToInstance(FindAllCoffeeDto, { pageSize: 'invalid' });
+  it('should properly validate the pageSize query param as integer', async () => {
+    const dto = plainToInstance(FindAllCoffeeQueryParamsDto, {
+      pageSize: 'invalid',
+    });
     const errors = await validate(dto);
     expect(errors.length).not.toBe(0);
     expect(JSON.stringify(errors)).toContain(
@@ -112,8 +139,21 @@ describe('Testing CoffeeController getAll method', () => {
     );
   });
 
+  it('should properly validate the pageSize query param as an integer greater than 0', async () => {
+    const dto = plainToInstance(FindAllCoffeeQueryParamsDto, {
+      pageSize: '0',
+    });
+    const errors = await validate(dto);
+    expect(errors.length).not.toBe(0);
+    expect(JSON.stringify(errors)).toContain(
+      `The page size must be greater than 0`,
+    );
+  });
+
   it('should properly validate a valid pageSize query param', async () => {
-    const dto = plainToInstance(FindAllCoffeeDto, { pageSize: '0' });
+    const dto = plainToInstance(FindAllCoffeeQueryParamsDto, {
+      pageSize: '10',
+    });
     const errors = await validate(dto);
     expect(errors.length).toBe(0);
   });
