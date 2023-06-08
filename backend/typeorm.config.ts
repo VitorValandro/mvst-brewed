@@ -19,6 +19,7 @@ export const typeormDatabaseConfiguration = (): PostgresConnectionOptions => {
     entities: [__dirname + '/**/*.entity{.ts,.js}'],
     migrations: [__dirname + '/src/db/migrations/*{.ts,.js}'],
     synchronize: true,
+    migrationsTransactionMode: 'each',
   };
 
   if (process.env.NODE_ENV !== 'local') {
