@@ -10,8 +10,8 @@ export const TeaCard: React.FC<{
       <div className="relative w-232 h-248">
         <ImageWithFallback
           role="image"
-          fallbackImage={`/fallback-image.png`}
-          src={`/${imageUrl}`}
+          fallbackImage="/fallback-image.png"
+          src={imageUrl}
           alt="Product Image"
           fill
         />
