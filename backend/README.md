@@ -4,6 +4,8 @@ This README explains how to run the project backend.
 
 ## Installation
 
+**You should use Node.js v18 for running this project**
+
 First, clone the repository into your machine. Then, install the project dependencies using npm:
 
 ```bash
