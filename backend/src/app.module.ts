@@ -1,4 +1,4 @@
-import { join } from 'path';
+import { join, resolve } from 'path';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ServeStaticModule } from '@nestjs/serve-static';
@@ -7,10 +7,15 @@ import dataSource, { typeormDatabaseConfiguration } from '../typeorm.config';
 
 @Module({
   imports: [
-    ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'bucket'),
-      serveRoot: join('/bucket'),
-    }),
+    ServeStaticModule.forRoot(
+      (() => {
+        const bucketDir = resolve('./bucket');
+        return {
+          rootPath: bucketDir,
+          serveRoot: join('/bucket'),
+        };
+      })(),
+    ),
     TypeOrmModule.forRoot(typeormDatabaseConfiguration()),
     CoffeeModule,
   ],

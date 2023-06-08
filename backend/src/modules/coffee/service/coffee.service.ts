@@ -26,7 +26,7 @@ export class CoffeeService {
       });
     }
 
-    query.skip(Number(params.pageNumber) * params.pageSize);
+    query.skip(params.pageNumber * params.pageSize);
     query.take(params.pageSize);
 
     return query.getMany();

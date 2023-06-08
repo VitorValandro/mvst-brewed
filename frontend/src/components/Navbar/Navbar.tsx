@@ -29,7 +29,11 @@ export default function Navbar({links}: NavbarProps): ReactElement {
                   : "border-b-10 border-transparent"
               }`}
             >
-              <Link className="w-full h-full" passHref href={link.route}>
+              <Link
+                className="flex w-full h-full justify-center items-end"
+                passHref
+                href={link.route}
+              >
                 <span className="h-2/3 font-medium flex justify-center pb-1">
                   {link.title}
                 </span>

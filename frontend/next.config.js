@@ -8,8 +8,14 @@ module.exports = {
       },
     ];
   },
-  // images: {
-  //   loader: "imgix",
-  //   path: [process.env.NEXT_PUBLIC_AWS_BUCKET_PATH],
-  // },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "http",
+        hostname: "localhost",
+        port: "3000",
+        pathname: "/bucket/**",
+      },
+    ],
+  },
 };
