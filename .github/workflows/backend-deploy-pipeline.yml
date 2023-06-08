@@ -6,7 +6,9 @@ defaults:
     
 on:
   push:
-    branches: [main]
+    branches: [develop, main]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   deploy:
@@ -28,12 +30,4 @@ jobs:
         run: npm run build
 
       - name: Run tests
-        run: npm run test
-
-      - name: Install Railway
-        run: npm i -g @railway/cli
-
-      - name: Deploy
-        run: railway up
-        env:
-          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+        run: npm run tests
