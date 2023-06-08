@@ -8,6 +8,7 @@
     "lint": "next lint",
     "lint:fix": "next lint --fix",
     "test": "jest --watchAll=false",
+    "test:cov": "jest --coverage",
     "prettier:fix": "prettier --write '**/*.{ts,tsx}' ",
     "commit-linter": "commit -am --allow-empty 'fixing all linter issues'",
     "storybook": "storybook dev -p 6006",
