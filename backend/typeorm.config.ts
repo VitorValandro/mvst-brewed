@@ -1,7 +1,6 @@
 import { DataSource } from 'typeorm';
 import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
 import { config } from 'dotenv';
-import { Coffee } from './src/modules/coffee/entities/coffee.entity';
 
 config();
 
