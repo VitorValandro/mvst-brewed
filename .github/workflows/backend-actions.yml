@@ -1,4 +1,4 @@
-name: Deploy to Railway
+name: Back End CI/CD
 
 defaults:
   run:
