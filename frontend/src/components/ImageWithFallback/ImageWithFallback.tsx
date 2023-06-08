@@ -1,6 +1,6 @@
 import {ReactElement, useState} from "react";
 import Image, {ImageProps} from "next/image";
-import imagePathResolver from "src/common/image.resolver";
+import imagePathResolver from "@/common/image.resolver";
 
 interface ImageWithFallbackProps extends ImageProps {
   fallbackImage: string;
