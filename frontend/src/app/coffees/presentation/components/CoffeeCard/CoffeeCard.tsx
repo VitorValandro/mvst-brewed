@@ -13,7 +13,7 @@ export const CoffeeCard: React.FC<{
       <div className="relative w-232 h-248">
         <ImageWithFallback
           role="image"
-          fallbackImage={`/fallback-image.png`}
+          fallbackImage="/fallback-image.png"
           src={imageUrl}
           alt="Product Image"
           fill

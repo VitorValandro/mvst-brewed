@@ -5,7 +5,7 @@ import {TeaCard} from "./TeaCard";
 
 describe("Testing TeaCard component", () => {
   it("should render title with correct value", () => {
-    render(<TeaCard title="Tea Card Test" imageUrl="" />);
+    render(<TeaCard title="Tea Card Test" imageUrl="image.png" />);
     const title = screen.getByRole("title");
     expect(title).toHaveTextContent("Tea Card Test");
   });
