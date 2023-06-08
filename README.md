@@ -1,81 +1,68 @@
 ## MVST Challenge
 
-Hi, thanks for applying to MVST, the next step of the process is a coding challenge. If you have anything that we can help you with, just ping us.
+It was a lot of fun developing this project. Besides the tech challenges, I did a lot of research on german coffee and learned a lot, thanks for the opportunity :)
 
-
-## How to get started 
-  To get started with the challenge, first read the rest of this README. Then you can go on and 
-  read the README.md inside the frontend and backend folders.
-  
-  [Backend README](https://github.com/mvst-h/mvst-coffee-tea-challenge/blob/master/backend/README.md)
-  
-  [Frontend README](https://github.com/mvst-h/mvst-coffee-tea-challenge/blob/master/frontend/README.md)
-
-
-## Introduction 
-
-This challenge is a project that already contains backend and frontend structure. 
-
-The backend and frontend are not connected at the beginning of the challenge. 
-
-Your task will be to implement some requirements using this repository, but you may own the code. So feel free to refactor, readjust and improve if you feel like it. Also feel free to host the code, update the README. 
-
-## Task 
-
-After running the frontend. You will see a list of coffees at "localhost:4000/coffees".
-
-### Task 1 - Coffee list :coffee:
-1. This list is currently static on the frontend. The first task is to connect the backend and the frontend to properly render the list with the data coming from the backend.
-
-2. Update both the frontend and the backend to reflect the design in the following Figma file. 
-    https://www.figma.com/file/eXKRZRFUDXaXEbRq2SnikI/Coding-Challenge?node-id=2%3A2
-
-### Task 2 - Tea list :tea:
-
-1. After part 1 is finished, we need to implement the second list. A list of teas. We need to add the backend and frontend to reflect the similar data in the design.
-
-https://www.figma.com/file/eXKRZRFUDXaXEbRq2SnikI/Coding-Challenge?node-id=2%3A2
-
-### Finishing the task
-1. Create a Pull Request with the coding challenge.
-2. Tell MVST HR Team that you are done with it
-3. That is it :)
-
-### Expected result
-
-1. The challenge is completed if both lists are rendering on the frontend and fetching on the backend.
-2. Using nest.js is a mandatory thing from this project.
-3. Next.js is there to help you have a quick start and focus on the coding. You can replace to Create React App if you feel like it would be faster.
-
-### What we will check
-   To be transparent, these are some things we consider important in the challenge
-  
-  1. General skills of programming, we will analyze your code not only to have the lists rendering from the backend, but also the code quality in other ways.
-  2. Outcome in comparison with the design
-
-
-### ⚠️ Important notes
-The current code is just a base project that you can easily start focusing on coding. Please take in consideration that the decisions of folder structure, backend layers and architecture and other decisions has to be yours. 
-
-### FAQ
-
--  I am not familiar with nest.js and next.js
-Don't spend much time trying to make a good project for nest and next, that is not what we want to analyze in those challenges. They are just there, so you have a running project and can show us some code.
-
-For the frontend, focus more in the React part then in the next.js part. 
-For the backend part, focus more in the layers you add in the code than in really specifics for nest.js
-
-- I don't want to use tailwind
-Feel free to use pure CSS (we love it).
-Feel free to use any other library that might help you
-
- 
-### What would you improve if given more time?
-Please fill
+This document have some info on how I developed this project.
+A live version of this project can be found here: [mvst-brewed.vercel.app](https://mvst-brewed.vercel.app/)
 
 ---
 
+### Front End
 
-Thanks and have a good challenge ;)
+Check how to run the front end app in the [Frontend README](https://github.com/mvst-h/mvst-coffee-tea-challenge/blob/master/frontend/README.md)
 
-MVST Team
+I changed almost nothing from the project boilerplate: used NextJS, tailwind, jest, react-testing-library, storybook and tried to follow the DDD practices. I followed the figma design strictly, so I think the UI outcome is pretty good. Despite the same dependencies, all packages were updated to the latest version.
+
+#### Unit tests
+
+Almost all components have unit tests, ~97% of coverage. The UI tests are very simple, just checking if the component is rendered with the proper info in different scenarios. The utility resources such as mappers and models also have unit tests. No integration or e2e tests were written.
+
+#### Storybook
+
+The project uses storybook for documenting the UI components, all components have stories in the storybook.
+
+### Back End
+
+Check how to run the front end app in the [Backend README](https://github.com/mvst-h/mvst-coffee-tea-challenge/blob/master/backend/README.md)
+
+The Back End uses NestJS and PostgresSQL with typeorm to interface between them. Despite the same dependencies of the boilerplate, all packages were updated to its latest version.
+
+#### Migrations and database seeding
+
+The typeorm configuration was changed for supporting migrations to have a better control of the database structure. As the project does not have routes for creating new objects I wrote some database seeds for both tea and coffee entities for populating the database with the same products as shown in the Figma design. These seeds are typeorm migrations.
+
+#### Assets bucket
+
+For serving the products images for the front end I created a folder on the root of the backend dir and served it statically on the `/bucket` endpoint. This is not the ideal solution, but it was better than storing the files directly on the database. In a real world project this bucket should be on a external service such as AWS, GCP and etc.
+
+#### Unit tests
+
+I wrote some unit tests on the domains controllers, services and DTOs. The coverage is ~56%. The tests are simple since the only route is a `getAll` for each tea and coffee entities. I added some features like filtering by title and tag (in case of the coffee list) and pagination just as an excuse for creating a DTO for the query params and validating it with `class-validator` and testing it within the controller test suite.
+
+### Deployment
+
+As a result of [this issue](https://github.com/mvst-h/vitorvalandro-coffee-tea-challenge/issues/1), I decided to deploy the project on a production environment. For that I had to clone this repository into [one of my own](https://github.com/VitorValandro/mvst-brewed) so that I could connect the backend to [Railway](https://railway.app/) for deploying the NestJS app and the PostgreSQL database and the frontend to [Vercel](https://vercel.com/) for deploying the NextJS client. The deployments are configured to be triggered when the `main` branch updates.
+
+#### CI/CD
+
+Along with the deployment I setted up some github actions for checking builds and run all unit tests on `main` branch pull requests and `develop` branch pushes. This simple CI/CD workflow ensures that nothing will break after a release.
+
+### What would you improve if given more time?
+
+Without adding new features on the product I think that this things would improve the project quality:
+
+- Store the assets in a proper external bucket;
+- Implement pagination, sorting and filtering on the front end;
+- Implement e2e tests;
+- Create a mock SQLite testing database to enable better tests and increase test coverage;
+- Add tests for the front end pages;
+- Improve CI/CD workflow with a better integration between github actions and deployment services;
+- Add API documentation with swagger or other tool;
+
+### That's it!
+
+If you want to run the project locally you can see the [Frontend README](https://github.com/mvst-h/mvst-coffee-tea-challenge/blob/master/frontend/README.md) and [Backend README](https://github.com/mvst-h/mvst-coffee-tea-challenge/blob/master/backend/README.md) for instructions on how to run the tests, see the storybook, setup the database and all. If you simply want to see the project up and running, [check this live version](https://mvst-brewed.vercel.app/).
+
+Thanks :)
+
+Vitor Valandro
