@@ -1,5 +1,9 @@
 name: Deploy to Railway
 
+defaults:
+  run:
+    working-directory: ./backend
+    
 on:
   push:
     branches: [main]
