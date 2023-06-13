@@ -31,18 +31,14 @@ const coffees: Coffee[] = [
 ];
 
 const mockCoffeeRepository = {
-  createQueryBuilder: jest.fn(),
+  find: jest.fn(),
 };
 
 describe('Testing CoffeeService', () => {
   let service: CoffeeService;
 
   beforeEach(async () => {
-    mockCoffeeRepository.createQueryBuilder.mockImplementation(() => ({
-      skip: jest.fn().mockReturnValue(0),
-      take: jest.fn().mockReturnValue(10),
-      getMany: async () => Promise.resolve(coffees),
-    }));
+    mockCoffeeRepository.find.mockImplementation(async () => Promise.resolve(coffees));
 
     const module: TestingModule = await Test.createTestingModule({
       providers: [
@@ -68,6 +64,6 @@ describe('Testing CoffeeService', () => {
   it('should get a list of coffees', async () => {
     const coffeeList = await service.list({});
     expect(coffeeList).toEqual(coffees);
-    expect(mockCoffeeRepository.createQueryBuilder).toHaveBeenCalledTimes(1);
+    expect(mockCoffeeRepository.find).toHaveBeenCalledTimes(1);
   });
 });
