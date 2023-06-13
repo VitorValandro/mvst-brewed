@@ -27,18 +27,14 @@ const teas: Tea[] = [
 ];
 
 const mockTeaRepository = {
-  createQueryBuilder: jest.fn(),
+  find: jest.fn(),
 };
 
 describe('Testing TeaService', () => {
   let service: TeaService;
 
   beforeEach(async () => {
-    mockTeaRepository.createQueryBuilder.mockImplementation(() => ({
-      skip: jest.fn().mockReturnValue(0),
-      take: jest.fn().mockReturnValue(10),
-      getMany: async () => Promise.resolve(teas),
-    }));
+    mockTeaRepository.find.mockImplementation(async () => Promise.resolve(teas));
 
     const module: TestingModule = await Test.createTestingModule({
       providers: [
@@ -64,6 +60,6 @@ describe('Testing TeaService', () => {
   it('should get a list of teas', async () => {
     const teaList = await service.list({});
     expect(teaList).toEqual(teas);
-    expect(mockTeaRepository.createQueryBuilder).toHaveBeenCalledTimes(1);
+    expect(mockTeaRepository.find).toHaveBeenCalledTimes(1);
   });
 });

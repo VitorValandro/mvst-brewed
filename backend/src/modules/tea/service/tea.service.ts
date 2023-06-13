@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Like, Repository } from 'typeorm';
 import { Tea } from '../entities/tea.entity';
 import { FindAllTeaQueryParamsDto } from '../dto/FindAllTeaQueryParams.dto';
 
@@ -12,17 +12,12 @@ export class TeaService {
   ) {}
 
   async list(params: FindAllTeaQueryParamsDto): Promise<Tea[]> {
-    const query = this.teaRepository.createQueryBuilder('tea');
-
-    if (params.titleFilter) {
-      query.andWhere('tea.title like :titleFilter', {
-        titleFilter: `%${params.titleFilter}%`,
-      });
-    }
-
-    query.skip(params.pageNumber * params.pageSize);
-    query.take(params.pageSize);
-
-    return query.getMany();
+    return this.teaRepository.find({
+      where: {
+        title: params?.titleFilter ? Like(`%${params.titleFilter}%`) : undefined,
+      },
+      skip: params.pageNumber * params.pageSize,
+      take: params.pageSize
+    })
   }
 }
