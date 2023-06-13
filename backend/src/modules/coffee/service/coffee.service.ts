@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Like, Repository } from 'typeorm';
 import { Coffee } from '../entities/coffee.entity';
 import { FindAllCoffeeQueryParamsDto } from '../dto/FindAllCofffeeQueryParams.dto';
 
@@ -12,23 +12,13 @@ export class CoffeeService {
   ) {}
 
   async list(params: FindAllCoffeeQueryParamsDto): Promise<Coffee[]> {
-    const query = this.coffeeRepository.createQueryBuilder('coffee');
-
-    if (params.titleFilter) {
-      query.andWhere('coffee.title like :titleFilter', {
-        titleFilter: `%${params.titleFilter}%`,
-      });
-    }
-
-    if (params.titleFilter) {
-      query.andWhere('coffee.tag = :tagFilter', {
-        tagFilter: params.tagFilter,
-      });
-    }
-
-    query.skip(params.pageNumber * params.pageSize);
-    query.take(params.pageSize);
-
-    return query.getMany();
+    return this.coffeeRepository.find({
+      where: {
+        title: params?.titleFilter ? Like(`%${params.titleFilter}%`) : undefined,
+        tag: params?.tagFilter || undefined
+      },
+      skip: params.pageNumber * params.pageSize,
+      take: params.pageSize
+    })
   }
 }
